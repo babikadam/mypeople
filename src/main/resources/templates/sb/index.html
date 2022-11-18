@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>People Management System</title>
+</head>
+<body>
+<table>
+
+    <thead>
+    <th>Person ID</th>
+    <th>First name </th>
+    <th>Last name</th>
+    <th>Age</th>
+    <th>Email</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="person : ${person.}">
+
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <!--        <td th:text="${#authentication.principal.authorities}"></td>-->
+        <td th:text="${user.rolesForManagement()}"></td>
+        <td>
+            <a th:href="@{/user/editUser/{id}(id=${user.id})}"><button class="button is-link is-small">Edit User</button></a>
+            <br>
+            <br>
+            <a th:href="@{/user/deleteUser/{id}(id=${user.id})}" th:data-confirm-delete="|Are you sure you want to delete user ${user.username}?|" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" ><button class="button is-danger is-small">Delete User</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
